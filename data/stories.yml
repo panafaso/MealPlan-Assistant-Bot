@@ -1,0 +1,43 @@
+version: "3.1"
+
+stories:
+
+# Scenario 1: Meal plan today
+- story: happy path meal plan today
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - action: utter_ask_mood
+    - intent: mood_great
+    - action: utter_happy
+    - action: utter_offer_help
+    - action: utter_menu_examples
+    - intent: ask_meal_plan_today
+    - action: action_meal_plan_today
+    - action: utter_offer_help
+
+
+# Scenario 2: Find recipe by ingredient
+- story: find recipe with ingredient
+  steps:
+    - intent: find_recipes
+    - action: recipe_form
+    - active_loop: recipe_form
+    - intent: provide_ingredient
+    - action: recipe_form
+    - active_loop: null
+    - action: action_find_recipes
+    - action: utter_offer_help
+
+
+# Scenario 3: Nutrition info
+- story: nutrition info flow
+  steps:
+    - intent: nutrition_info
+    - action: nutrition_form
+    - active_loop: nutrition_form
+    - intent: provide_food
+    - action: nutrition_form
+    - active_loop: null
+    - action: action_get_nutrition
+    - action: utter_offer_help

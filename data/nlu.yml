@@ -1,0 +1,218 @@
+version: "3.1"
+
+nlu:
+# Small talk and control intents: Basic conversational intents (greeting, help, goodbye)
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+    - hello there
+    - yo
+    - good morning
+    - good evening
+    - good afternoon
+    - hey dude
+    - let's go
+
+- intent: goodbye
+  examples: |
+    - cu
+    - bye
+    - goodbye
+    - see you
+    - see you around
+    - see you later
+    - good night
+    - have a nice day
+
+- intent: ask_help
+  examples: |
+    - help
+    - what can you do
+    - how can you help me
+    - show me options
+    - menu
+    - what do you offer
+
+- intent: bot_challenge
+  examples: |
+    - what are you?
+    - are you a bot?
+    - are you human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - who are you?
+
+- intent: ask_bot_mood
+  examples: |
+    - how are you?
+    - how are you doing?
+    - are you ok?
+    - what's up?
+    - is everything good?
+    - all fine?
+    - all good?
+    - how is it going?
+
+# User mood intents
+- intent: mood_great
+  examples: |
+    - good
+    - perfect
+    - excellent
+    - very good
+    - great
+    - wonderful
+    - feeling like a king
+    - I am going to save the world
+    - I am great
+    - I am amazing
+    - super stoked
+    - fine
+    - so good
+    - so perfect
+    - ok
+    - I'm good
+    - I am good
+    - amazing
+
+- intent: mood_unhappy
+  examples: |
+    - sad
+    - my day was horrible
+    - I'm so sad
+    - very sad
+    - not good
+    - extremely sad
+    - unhappy
+    - bad
+    - terrible
+    - I'm sad
+    - I am sad
+    - depressed
+    - not okay
+
+# For robustness: Intents the bot explicitly does not support (both relevant and irrelevant)
+- intent: insult
+  examples: |
+    - fuck you
+    - you are awful
+    - idiot
+    - stupid bot
+    - piece of shit
+
+- intent: out_of_scope
+  examples: |
+    - tell me about football
+    - tell me about [ketogenic] diet
+    - I want to lose weight fast, what should I eat?
+    - Is vegan diet healthier than omnivore?
+    - I have diabetes, what should I eat?
+    - I’m pregnant, what diet is safe? what should I eat?
+    - What is the best multivitamin?
+    - What’s the healthiest breakfast?
+    - How many meals per day is best?
+
+    - What's the capital of France?
+    - Write me a poem
+    - Solve this math problem
+    - I want to book a flight
+
+- intent: thanks
+  examples: |
+    - thank you
+    - thanks
+    - thanks a lot
+    - thank you so much
+    - appreciate it
+    - cheers
+
+# 1st scenario - Meal plan intents: Core function of the bot - daily and weekly meal plans
+- intent: ask_meal_plan_generic
+  examples: |
+    - i want a meal plan
+    - make me a meal plan
+    - plan my meals
+    - suggest a meal plan
+    - meal plan please
+    - give me meal ideas
+
+- intent: ask_meal_plan_today
+  examples: |
+    - meal plan for today
+    - today meal plan
+    - what should I eat today
+    - plan meals for today
+    - give me meals for today
+
+- intent: ask_meal_plan_tomorrow
+  examples: |
+    - meal plan for tomorrow
+    - tomorrow meal plan
+    - what should I eat tomorrow
+    - plan meals for tomorrow
+    - give me meals for tomorrow
+
+- intent: ask_weekly_meal_plan
+  examples: |
+    - weekly meal plan
+    - meal plan for the week
+    - plan my week meals
+    - meal schedule for the week
+    - 7 day meal plan
+
+
+# 2nd scenario - Recipes: Uses an external API (TheMealDB) with ingredient-based search
+- intent: find_recipes
+  examples: |
+    - find recipes
+    - i want a recipe
+    - i want a new recipe
+    - recipes with [chicken](ingredient)
+    - find recipes with [rice](ingredient)
+    - show recipes using [potatoes](ingredient)
+    - what can I cook with [tomatoes](ingredient)
+    - recipe based on [cucumber](ingredient)
+
+- intent: provide_ingredient
+  examples: |
+    - [rice](ingredient)
+    - [chicken](ingredient)
+    - [potatoes](ingredient)
+    - [cucumber](ingredient)
+    - [lentils](ingredient)
+    - for [cucumber](ingredient)
+    - with [cucumber](ingredient)
+    - using [cucumber](ingredient)
+    - ingredient is [cucumber](ingredient)
+    - for [rice](ingredient)
+    - with [rice](ingredient)
+    - for [chicken](ingredient)
+    - with [chicken](ingredient)
+
+# 3rd scenario - Nuntrition info: uses local CSV dataset 
+- intent: nutrition_info
+  examples: |
+    - nutrition info
+    - calories in [oats](food)
+    - nutrition facts
+    - how many calories are in [banana](food)
+    - calories in [oats](food)
+    - macros for [yogurt](food)
+    - protein in [egg](food)
+    - nutrition facts for [bread](food)
+    - i want nutrition info for [bread](food)
+
+- intent: provide_food
+  examples: |
+    - [banana](food)
+    - [oats](food)
+    - [bread](food)
+    - [egg](food)
+    - [rice](food)
+    - for [banana](food)
+    - calories for [banana](food)
+    - nutrition for [banana](food)
+    - [lentils](food)
+    - nutrition for [lentils](food)

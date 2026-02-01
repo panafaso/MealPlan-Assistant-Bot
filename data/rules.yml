@@ -1,0 +1,150 @@
+version: "3.1"
+
+rules:
+
+# greeting and small talk flow
+- rule: Greet then ask mood
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - action: utter_ask_mood
+
+- rule: User asks bot mood
+  steps:
+    - intent: ask_bot_mood
+    - action: utter_bot_mood
+    - action: utter_offer_help
+    - action: utter_menu_examples
+
+- rule: Thanks anytime
+  steps:
+    - intent: thanks
+    - action: utter_you_are_welcome
+    - action: utter_offer_help
+    - action: utter_menu_examples
+
+- rule: If user feels great, offer help
+  steps:
+    - intent: mood_great
+    - action: utter_happy
+    - action: utter_offer_help
+    - action: utter_menu_examples
+
+- rule: If user feels unhappy, offer help
+  steps:
+    - intent: mood_unhappy
+    - action: utter_sad
+    - action: utter_offer_help
+    - action: utter_menu_examples
+
+- rule: Bot challenge anytime
+  steps:
+    - intent: bot_challenge
+    - action: utter_iamabot
+    - action: utter_offer_help
+    - action: utter_menu_examples
+
+- rule: Goodbye anytime
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+# meal plan task rules
+- rule: Meal plan generic -> ask range
+  steps:
+    - intent: ask_meal_plan_generic
+    - action: utter_ask_plan_range
+
+- rule: Meal plan today
+  steps:
+    - intent: ask_meal_plan_today
+    - action: action_meal_plan_today
+    - action: utter_offer_help
+
+- rule: Meal plan tomorrow
+  steps:
+    - intent: ask_meal_plan_tomorrow
+    - action: action_meal_plan_tomorrow
+    - action: utter_offer_help
+
+- rule: Weekly meal plan
+  steps:
+    - intent: ask_weekly_meal_plan
+    - action: action_weekly_meal_plan
+    - action: utter_offer_help
+
+# Recipe search: Uses a form to ensure ingredient is provided
+- rule: Start recipe form
+  steps:
+    - intent: find_recipes
+    - action: recipe_form
+    - active_loop: recipe_form
+
+- rule: Ingredient provided -> start recipes
+  steps:
+    - intent: provide_ingredient
+    - action: recipe_form
+    - active_loop: recipe_form
+
+- rule: Submit recipe form
+  condition:
+    - active_loop: recipe_form
+  steps:
+    - action: recipe_form
+    - active_loop: null
+    - action: action_find_recipes
+    - action: utter_offer_help
+
+# Nutrition form: Uses a form to ensure food name is provided
+- rule: Start nutrition form
+  steps:
+    - intent: nutrition_info
+    - action: nutrition_form
+    - active_loop: nutrition_form
+
+- rule: Provide food during nutrition form
+  condition:
+    - active_loop: nutrition_form
+  steps:
+    - intent: provide_food
+    - action: nutrition_form
+
+- rule: Submit nutrition form
+  condition:
+    - active_loop: nutrition_form
+  steps:
+    - action: nutrition_form
+    - active_loop: null
+    - action: action_get_nutrition
+    - action: utter_offer_help
+
+# Robustness and error handling 
+- rule: Handle insults
+  steps:
+    - intent: insult
+    - action: utter_insult
+
+- rule: Out of scope
+  steps:
+    - intent: out_of_scope
+    - action: utter_out_of_scope
+
+# if user directly provides a food name, start nutrition flow
+- rule: Food provided -> start nutrition
+  steps:
+    - intent: provide_food
+    - action: nutrition_form
+    - active_loop: nutrition_form
+
+# Fallback handling when NLU confidence is too low
+- rule: NLU fallback
+  steps:
+    - intent: nlu_fallback
+    - action: utter_default
+    - action: action_listen
+
+# safety rule to ensure the bot always returns to listening
+- rule: After default message, listen
+  steps:
+    - action: utter_default
+    - action: action_listen
