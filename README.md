@@ -1,18 +1,18 @@
-# MealPlan Assistant (Rasa chatbot)
+# MealPlan Assistant (Rasa chatbot) by Panagiotis FASOULIDIS
 
-**MealPlan Assistant** is a task-oriented chatbot built with **Rasa**. Its purpose is practical: help a user quickly decide *what to eat*, offer *recipe ideas* based on what they already have at home, and provide *basic nutrition information* without having to search multiple websites.
+**MealPlan Assistant** is a task-oriented chatbot built with **Rasa**. The reason why I developed this specific Rasa Chatbot was to help a user quickly decide *what to eat*, offer *recipe ideas* based on what they already have at home and provide *basic nutrition information* without having to search multiple websites.
 
-This project was developed in the context of the course **“Special Topics in Language Technology: Multimodal and Dialogue Systems and Voice Assistants”** (MSc Language Technology) and follows the assignment requirements for a Task-Oriented Dialog System Prototype: multiple distinct interaction scenarios, a mock task execution, integrations with real-world data sources, and robust error handling.
+This project was developed in the context of the course **“Special Topics in Language Technology: Multimodal and Dialogue Systems and Voice Assistants”** (MSc Language Technology) and follows the assignment requirements for a Task-Oriented Dialog System Prototype: multiple distinct interaction scenarios, a mock task execution, integrations with real-world data sources and robust error handling.
 
 ## Domain and motivation
 
-Meal planning is a small everyday problem that becomes annoying very quickly: people often want suggestions that are immediate, simple, and usable, without spending time scrolling through recipes or nutrition pages. The motivation behind this bot is to provide “fast help” in three common situations:
+Meal planning is a small everyday problem that becomes annoying very quickly: people often want suggestions that are immediate, simple and usable, without spending time scrolling through recipes or nutrition pages. The motivation behind this bot is to provide “fast help” in three common situations:
 
 1. The user wants a **ready meal plan** (for today, tomorrow, or a full week) without overthinking it.
 2. The user has an ingredient and wants **recipe ideas** that actually exist in a real recipe database.
 3. The user wants **nutrition values** (calories/macros) for a food item, in a way that is quick and easy to understand.
 
-Even though the assistant is simple by design, it still demonstrates the typical structure of a task-oriented system: intent classification, slot filling via forms, custom actions, and integration with external data sources.
+Even though the assistant is simple by design, it still demonstrates the typical structure of a task-oriented system: intent classification, slot filling via forms, custom actions and integration with external data sources.
 
 ## Implemented scenarios (3 distinct interaction scenarios)
 
@@ -56,10 +56,10 @@ The final response provides calories and available macros per 100g (based on the
 The assistant integrates two real-world data sources in two distinct scenarios:
 
 **1) TheMealDB API (external data source)**  
-This source is used for recipe retrieval in Scenario 2. It was chosen because it is publicly accessible, lightweight to integrate, and produces dynamic results. It demonstrates the chatbot’s ability to send requests, parse JSON, and generate responses based on live external data.
+This source is used for recipe retrieval in Scenario 2. It was chosen because it is publicly accessible, lightweight to integrate and produces dynamic results. It demonstrates the chatbot’s ability to send requests, parse JSON and generate responses based on live external data.
 
 **2) Kaggle nutrition dataset (local CSV dataset)**  
-This source is used in Scenario 3. A structured local dataset is ideal for deterministic, grounded responses: the assistant can give nutrition values without relying on an online service, and the logic is transparent and reproducible. This also leaves a clear path for future extension (e.g., replacing the CSV with a database).
+This source is used in Scenario 3. A structured local dataset is ideal for deterministic, grounded responses: the assistant can give nutrition values without relying on an online service and the logic is transparent and reproducible. 
 
 
 ## Error handling and robustness
@@ -69,14 +69,14 @@ Because task-oriented bots can fail in practical ways (network issues, missing s
 - **API failures and timeouts:** recipe requests are wrapped in `try/except` blocks with explicit timeouts. If the API is unavailable, the assistant responds with a clear message instead of crashing.
 - **No results:** when the API returns no recipes for a given ingredient, the assistant explicitly informs the user and encourages them to try a different ingredient. Similarly, if the nutrition dataset has no match, the assistant reports that no nutrition data was found.
 - **Slot validation through forms:** both `recipe_form` and `nutrition_form` validate user input using `validate_recipe_form` and `validate_nutrition_form` to avoid empty or unusable values.
-- **Out-of-scope messages and insults:** the bot includes explicit intents and responses to keep the interaction controlled and polite, and a fallback response for low-confidence NLU predictions.
+- **Out-of-scope messages and insults:** the bot includes explicit intents and responses to keep the interaction controlled and polite and a fallback response for low-confidence NLU predictions.
 
 ## Challenges during implementation (and how I handled them)
 
 ### 1) LLM-based generation with Ollama was inconsistent in Rasa actions
 
 Initially, I tried using a local LLM (via Ollama) in order to generate more natural and flexible responses.  
-In practice όμως, this approach proved unreliable inside Rasa actions. The request–response loop was not stable:
+In practice, this approach proved unreliable inside Rasa actions. The request–response loop was not stable:
 
 - responses were sometimes slow enough that the action call felt “stuck”,  
 - occasionally the response arrived too late or timed out,  
@@ -103,7 +103,7 @@ This design keeps the dialogue coherent even when user input is underspecified.
 
 ### 3) Data variability in the Kaggle dataset (column naming & formatting)
 
-Real-world datasets are rarely perfectly clean or consistent. The nutrition CSV used in this project contains variations in column names, missing values, and different encodings.
+Real-world datasets are rarely perfectly clean or consistent. The nutrition CSV used in this project contains variations in column names, missing values and different encodings.
 
 To make the system robust, I implemented:
 - automatic column detection (`_pick_col`) using candidate column names,  
