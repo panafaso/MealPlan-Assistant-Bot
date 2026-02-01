@@ -111,3 +111,35 @@ To make the system robust, I implemented:
 - fallback encodings when loading the CSV file.
 
 These mechanisms prevent runtime crashes and significantly improve matching reliability across different food entries.
+
+## Example interactions (chatbot interface)
+
+To demonstrate that the system works both at the interface level and at the backend level, example interactions are shown from two different perspectives: a graphical user interface and the Rasa terminal.
+
+**Graphical interface (UI prototype):**  
+A simple chat interface was designed (e.g., using Figma / web-based mockup) to illustrate how the chatbot could be embedded in a real application. This interface shows typical user interactions such as requesting meal plans, asking for recipes, and querying nutrition information. The goal of this UI is not to build a full product, but to provide a realistic visualization of how users would interact with the system.
+
+**Terminal interface (Rasa shell):**  
+The same scenarios were also tested directly through the Rasa shell. This demonstrates that the dialogue logic, intent classification, slot filling, and custom actions work correctly at the system level, independently of any graphical interface.
+
+The examples include:
+- normal task-oriented flows (meal plans, recipes, nutrition),
+- out-of-scope questions (e.g., unrelated topics),
+- error cases (e.g., no results found, unavailable API),
+- and recovery behavior through forms and fallback responses.
+
+Screenshots from both the UI prototype and the terminal runs are included in the `screenshots/` folder and in the presentation, as evidence of correct system behavior.
+
+## Credits and data sources
+
+This project makes use of the following external resources:
+
+- **TheMealDB API**  
+  https://www.themealdb.com  
+  Used for retrieving real recipe data based on ingredients.
+
+- **Kaggle Nutrition Dataset**  
+  [https://www.kaggle.com ](https://www.kaggle.com/datasets/adilshamim8/daily-food-and-nutrition-dataset) 
+  Used as a local CSV dataset for nutritional information (calories and macronutrients).
+
+These sources were selected because they are publicly available, easy to integrate, and suitable for demonstrating real-world data usage in a task-oriented dialogue system.
