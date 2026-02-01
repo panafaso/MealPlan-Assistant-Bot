@@ -1,0 +1,138 @@
+version: "3.1"
+
+# Intents: what user can say 
+intents:
+  # small talk / control
+  - greet
+  - goodbye
+  - ask_help
+  - bot_challenge
+  - insult
+  - out_of_scope
+  - mood_great
+  - mood_unhappy
+  - ask_bot_mood
+  - thanks
+
+  # meal plans
+  - ask_meal_plan_generic
+  - ask_meal_plan_today
+  - ask_meal_plan_tomorrow
+  - ask_weekly_meal_plan
+
+  # recipes/nutrition
+  - find_recipes
+  - nutrition_info
+  - provide_ingredient
+  - provide_food
+
+# Entities: Important words extracted from user input
+entities:
+  - ingredient
+  - food
+
+# Slots: Memory used during forms
+slots:
+  ingredient:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: ingredient
+      - type: from_text
+        conditions:
+          - active_loop: recipe_form
+            requested_slot: ingredient
+
+  food:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: food
+      - type: from_text
+        conditions:
+          - active_loop: nutrition_form
+            requested_slot: food
+
+# Forms: Multi-turn data collection
+forms:
+  recipe_form:
+    required_slots:
+      - ingredient
+
+  nutrition_form:
+    required_slots:
+      - food
+
+# Responses: Bot messages shown to the user
+responses:
+  utter_greet:
+    - text: "Hi! 👋"
+
+  utter_ask_mood:
+    - text: "How are you today?"
+
+  utter_bot_mood:
+    - text: "I’m doing well 🙂 Thanks for asking."
+
+  utter_happy:
+    - text: "Great — I’m glad you’re doing well! 🙂"
+
+  utter_sad:
+    - text: "I’m sorry I hear that 😕 I’m here for you. Maybe some good food can help lift your mood."
+
+  utter_you_are_welcome:
+    - text: "You’re welcome 🙂 I’m here if you need anything else."
+    
+# Main menu/capabilities of the bot
+  utter_offer_help:
+    - text: |
+        What do you want to do?
+        1) Meal plan (today / tomorrow / weekly)
+        2) Recipes by ingredient
+        3) Nutrition info (calories/macros)
+
+# Example utterances to guide the user
+  utter_menu_examples:
+    - text: |
+        Examples:
+        • "meal plan for today"
+        • "meal plan for tomorrow"
+        • "weekly meal plan"
+        • "recipes with chicken"
+        • "calories in banana"
+
+  utter_ask_plan_range:
+    - text: "Sure 🙂 Do you want for *today*, *tomorrow*, or the *whole week*?"
+
+  utter_ask_ingredient:
+    - text: "Sure. Which ingredient do you want for the recipe? (e.g., chicken, rice, potatoes, cucumber)"
+
+  utter_ask_food:
+    - text: "Sure. Which food would you like nutrition information for? (e.g., banana, oats, egg, rice)"
+
+  utter_iamabot:
+    - text: "I’m a Rasa chatbot focused on meal plans, recipes and nutrition."
+
+  utter_goodbye:
+    - text: "Bye! 👋"
+
+  utter_insult:
+    - text: "I can’t continue with insults. If you want, we can continue politely."
+
+  utter_out_of_scope:
+    - text: "I can help with such topics. I can help with: 1) Meal plans (today / tomorrow / weekly), 2) Recipes by ingredient, 3) Nutrition info for specific foods"
+
+  utter_default:
+    - text: "Sorry, I didn’t catch that. Ask me for a meal plan, recipe ideas or nutrition info."
+
+# Actions
+actions:
+  - action_meal_plan_today
+  - action_meal_plan_tomorrow
+  - action_weekly_meal_plan
+  - action_find_recipes
+  - action_get_nutrition
+  - validate_recipe_form
+  - validate_nutrition_form
