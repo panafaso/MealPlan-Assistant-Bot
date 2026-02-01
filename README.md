@@ -1,5 +1,9 @@
 # MealPlan Assistant (Rasa chatbot) by Panagiotis FASOULIDIS
 
+<p align="center">
+  <img src="MealPlan Assistant-Bot-AI generated.png" width="400">
+</p>
+
 **MealPlan Assistant** is a task-oriented chatbot built with **Rasa**. The reason why I developed this specific Rasa Chatbot was to help a user quickly decide *what to eat*, offer *recipe ideas* based on what they already have at home and provide *basic nutrition information* without having to search multiple websites.
 
 This project was developed in the context of the course **“Special Topics in Language Technology: Multimodal and Dialogue Systems and Voice Assistants”** (MSc Language Technology) and follows the assignment requirements for a Task-Oriented Dialog System Prototype: multiple distinct interaction scenarios, a mock task execution, integrations with real-world data sources and robust error handling.
