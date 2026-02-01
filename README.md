@@ -116,15 +116,24 @@ To make the system robust, I implemented:
 
 These mechanisms prevent runtime crashes and significantly improve matching reliability across different food entries.
 
+## Dialog policy experimentation 
+
+During development, several small experiments were conducted on the dialog policy in order to improve flow and user experience. Initially, the system relied mostly on simple rules and stories, which worked for basic scenarios but sometimes led to rigid or unnatural transitions between intents.
+
+One important modification was the increased use of forms for slot collection (e.g. recipe_form and nutrition_form). This choice was made to ensure that incomplete or minimal user inputs could still be handled reliably, without breaking the dialogue. Additionally, explicit fallback and out-of-scope rules were added to prevent the system from entering invalid states.
+
+Another change involved simplifying the overall dialog structure by reducing the number of overlapping intents. In early versions, some intents had similar meanings and caused confusion in intent classification. By merging or separating certain intents more clearly, the system became easier to train and more stable during interaction.
+
+Overall, these adjustments resulted in a more stable and predictable dialogue policy, improving robustness while keeping the system transparent and easy to debug.
 ## Example interactions (chatbot interface)
 
 To demonstrate that the system works both at the interface level and at the backend level, example interactions are shown from two different perspectives: a graphical user interface and the Rasa terminal.
 
 **Graphical interface (UI prototype):**  
-A simple chat interface was designed (e.g., using Figma / web-based mockup) to illustrate how the chatbot could be embedded in a real application. This interface shows typical user interactions such as requesting meal plans, asking for recipes, and querying nutrition information. The goal of this UI is not to build a full product, but to provide a realistic visualization of how users would interact with the system.
+A simple chat interface was designed (e.g., using Figma / web-based mockup) to illustrate how the chatbot could be embedded in a real application. This interface shows typical user interactions such as requesting meal plans, asking for recipes and querying nutrition information. The goal of this UI is not to build a full product, but to provide a realistic visualization of how users would interact with the system.
 
 **Terminal interface (Rasa shell):**  
-The same scenarios were also tested directly through the Rasa shell. This demonstrates that the dialogue logic, intent classification, slot filling, and custom actions work correctly at the system level, independently of any graphical interface.
+The same scenarios were also tested directly through the Rasa shell. This demonstrates that the dialogue logic, intent classification, slot filling and custom actions work correctly at the system level, independently of any graphical interface.
 
 The examples include:
 - normal task-oriented flows (meal plans, recipes, nutrition),
@@ -146,4 +155,4 @@ This project makes use of the following external resources:
   [https://www.kaggle.com ](https://www.kaggle.com/datasets/adilshamim8/daily-food-and-nutrition-dataset) 
   Used as a local CSV dataset for nutritional information (calories and macronutrients).
 
-These sources were selected because they are publicly available, easy to integrate, and suitable for demonstrating real-world data usage in a task-oriented dialogue system.
+These sources were selected because they are publicly available, easy to integrate and suitable for demonstrating real-world data usage in a task-oriented dialogue system.
