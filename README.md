@@ -131,9 +131,11 @@ To demonstrate that the system works both at the interface level and at the back
 
 **Graphical interface (web prototype):**
 A functional web-based chat interface was implemented using the **Streamlit framework**. This interface directly communicates with the Rasa backend through a REST API and allows users to interact with the chatbot in real time. The purpose of this interface is not to deliver a full production system, but to provide a realistic and interactive environment for evaluating the behavior of the conversational backend.
+
 ![Meal plan example](resources/MealPlan1.png)
 ![Recipe search example](resources/Recipe-query1.png)
 ![Nutrition query example](resources/nutrition-info1.png)
+![out-of-scope example](resources/out-of-scope2.png)
 
 **Terminal interface (Rasa shell):**  
 The same scenarios were also tested directly through the Rasa shell. This demonstrates that the dialogue logic, intent classification, slot filling and custom actions work correctly at the system level, independently of any graphical interface.
