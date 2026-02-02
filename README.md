@@ -127,10 +127,10 @@ Another change involved simplifying the overall dialog structure by reducing the
 Overall, these adjustments resulted in a more stable and predictable dialogue policy, improving robustness while keeping the system transparent and easy to debug.
 ## Example interactions (chatbot interface)
 
-To demonstrate that the system works both at the interface level and at the backend level, example interactions are shown from two different perspectives: a graphical user interface and the Rasa terminal.
+To demonstrate that the system works both at the interface level and at the backend level, example interactions are shown from two different perspectives: a web-based user interface and the Rasa terminal.
 
-**Graphical interface (UI prototype):**  
-A simple chat interface was designed (e.g., using Figma / web-based mockup) to illustrate how the chatbot could be embedded in a real application. This interface shows typical user interactions such as requesting meal plans, asking for recipes and querying nutrition information. The goal of this UI is not to build a full product, but to provide a realistic visualization of how users would interact with the system.
+**Graphical interface (web prototype):**
+A functional web-based chat interface was implemented using the Streamlit framework. This interface directly communicates with the Rasa backend through a REST API and allows users to interact with the chatbot in real time. The purpose of this interface is not to deliver a full production system, but to provide a realistic and interactive environment for evaluating the behavior of the conversational backend.
 
 **Terminal interface (Rasa shell):**  
 The same scenarios were also tested directly through the Rasa shell. This demonstrates that the dialogue logic, intent classification, slot filling and custom actions work correctly at the system level, independently of any graphical interface.
