@@ -161,3 +161,11 @@ This project makes use of the following external resources:
   Used as a local CSV dataset for nutritional information (calories and macronutrients).
 
 These sources were selected because they are publicly available, easy to integrate and suitable for demonstrating real-world data usage in a task-oriented dialogue system.
+
+This project uses the following open-source technologies:
+
+Rasa: for natural language understanding and dialogue management.
+
+Streamlit: for the development of the web-based user interface.
+
+Python: as the main programming language.
