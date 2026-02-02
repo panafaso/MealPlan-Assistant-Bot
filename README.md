@@ -140,6 +140,9 @@ A functional web-based chat interface was implemented using the **Streamlit fram
 **Terminal interface (Rasa shell):**  
 The same scenarios were also tested directly through the Rasa shell. This demonstrates that the dialogue logic, intent classification, slot filling and custom actions work correctly at the system level, independently of any graphical interface.
 
+![Recipe-rasa-shell](resources/recipe-rasa-shell.png)
+![nutrition-rasa-shell](resources/nutrition-info4.png)
+
 The examples include:
 - normal task-oriented flows (meal plans, recipes, nutrition),
 - out-of-scope questions (e.g., unrelated topics),
