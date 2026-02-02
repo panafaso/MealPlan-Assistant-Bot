@@ -122,7 +122,7 @@ responses:
     - text: "I can’t continue with insults. If you want, we can continue politely."
 
   utter_out_of_scope:
-    - text: "I can help with such topics. I can help with: 1) Meal plans (today / tomorrow / weekly), 2) Recipes by ingredient, 3) Nutrition info for specific foods"
+    - text: "I cannot help with such topics. I can only help with: 1) Meal plans (today / tomorrow / weekly), 2) Recipes by ingredient, 3) Nutrition info for specific foods"
 
   utter_default:
     - text: "Sorry, I didn’t catch that. Ask me for a meal plan, recipe ideas or nutrition info."
